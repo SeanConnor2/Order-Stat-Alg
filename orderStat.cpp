@@ -1,6 +1,6 @@
 /*
 Part 1 of CSC 382 Project:
-
+Implement Order Statistics Algorithm
 Authors: Nora Elattar, Sean Connor, and Matthew Henschke
 */
 #include <iostream>
