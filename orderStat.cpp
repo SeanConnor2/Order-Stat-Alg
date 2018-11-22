@@ -66,7 +66,8 @@ int medianPart(int A[], int l, int r, int k) {
 						   // Divide arr[] in groups of size 5, calculate median
 						   // of every group and store it in median[] array.
 		int i;
-		int median[n / 5];
+		int groups = n / 5; // the amount of groups we are going to have after splitting A into groups of five
+		int * median = new int[groups];
 		for (i = 0; i < n / 5; i++)
 			median[i] = findMedian(A + l + i * 5, 5);
 
@@ -94,6 +95,7 @@ int medianPart(int A[], int l, int r, int k) {
 
 
 int main() {
+	
 	// population and sample size arrays
 	int N[3] = { 5000, 8000, 10000 }; // population size
 	int n[6] = { 100, 300, 500, 1000, 2000, 4000 }; // sample size
@@ -104,6 +106,7 @@ int main() {
 		   // traverse through all sample array sizes
 	for (int i = 0; i < 6; i++) {
 		// header
+		
 		std::cout << n[i] << ":" << std::endl;
 		k = rand() % n[i] + 1;
 		int *A = new int[n[i]];
@@ -123,7 +126,7 @@ int main() {
 		}
 		std::cout << std::endl;
 	}
-
+	
 	return 0;
 }
 
