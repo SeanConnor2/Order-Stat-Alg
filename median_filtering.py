@@ -1,10 +1,12 @@
 """
 Part 2 of Project:
 Implement Median Filtering Procedure using Order Statistics Algorithm
+Authors: Nora Elattar, Sean Connor, and Matthew Henschke
 """
 #libraries used
 from PIL import Image
 import numpy
+from order_statistics import order_statistics
 
 #median filtering algorithm
 def median_filter(data, filter_size):
@@ -28,9 +30,14 @@ def median_filter(data, filter_size):
                             temp.append(data[i + z - indexer][j + k - indexer])
 
             # This is the part where we will implement the order statistics algorithm
-            temp.sort()
-            data_final[i][j] = temp[len(temp) // 2]
+            if len(temp) == len(set(temp)):
+                data_final[i][j] = order_statistics(temp, len(temp) // 2) # apply order statistics when pixel values are distinct
+            else:
+                data_final[i][j] = sorted(temp)[len(temp) // 2 ] # the pixel values are not distinct
             temp = []
+
+
+
     return data_final
 
 
