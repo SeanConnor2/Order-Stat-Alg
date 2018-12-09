@@ -10,14 +10,14 @@ from order_statistics import order_statistics
 
 #median filtering algorithm
 def median_filter(data, filter_size):
-    temp = []
+    temp = [] # will store current pixel values for each set in data
     indexer = filter_size // 2
     data_final = []
     data_final = numpy.zeros((len(data),len(data[0])))
     for i in range(len(data)):
 
         for j in range(len(data[0])):
-
+            # adding all pixel values to temp list
             for z in range(filter_size):
                 if i + z - indexer < 0 or i + z - indexer > len(data) - 1:
                     for c in range(filter_size):
@@ -42,11 +42,16 @@ def median_filter(data, filter_size):
 
 
 if __name__ == "__main__":
-    img = Image.open("boat.jpg").convert("L")
-    filter = int(input("Please enter a dimension"))
+    file = str(input("Please enter the filename "))
+    before_path = "./before/{}".format(file)
+    img = Image.open(before_path).convert("L")
+    filter = int(input("Please enter a dimension "))
     arr = numpy.array(img)
     removed_noise = median_filter(arr, filter)
     img = Image.fromarray(removed_noise)
+    img = img.convert("L")
+    after_path = "./after/{}".format(file) #directory to save all images after median filtering
+    img.save(after_path)
     img.show()
 
 
